@@ -104,7 +104,7 @@ python /home/h/hirsts/compute/assembly_stats/assembly_stats.py ~/Cruber/CLP2635/
 From here on out, I only use the additional Purge_dups assembly
 # BUSCO
 To assess the quality of your genome assembly, you will want to run [BUSCO](https://busco.ezlab.org/). Ideally, you will have BUSCO completeness at least >90%
-I use [BUSCO Linieages](https://busco.ezlab.org/list_of_lineages.html) vertebrata_odb10 and sauropsida_odb10
+I use [BUSCO Lineages](https://busco.ezlab.org/list_of_lineages.html) vertebrata_odb10 and sauropsida_odb10
 ```
 conda activate BUSCO
 
@@ -209,6 +209,48 @@ genome=~/Cruber/CLP2635/Annotation/BRAKER/Cruber_CLP2635_v2.purge_dups.asm.maske
 
 conda activate gemoma
 GeMoMa GeMoMaPipeline threads=50 -Xmx250G outdir=final_annot GeMoMa.Score=ReAlign AnnotationFinalizer.r=NO o=true t=$genome s=own i=acarol a=$acgff g=$acfna s=own i=cadam a=$cagff g=$cafna s=own i=ctigris a=$ctgff g=$ctfna s=own i=telegans a=$tegff g=$tefna r=MAPPED ERE.m=$blood ERE.m=$heart ERE.m=$gonad ERE.m=$kideny ERE.m=$liver ERE.m=$VG
+```
+Next, we can add more useful annotations using [Interproscan](https://www.ebi.ac.uk/interpro/search/sequence/) and [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download)
+
+You first need to obtain a Uniprot protein database of reference organisms for Blast. I chose Acarol Cadam Ctigris Ohannah Telegans and combined their uniprot files into a single FASTA file combined_uniprot.fasta
+
+Interproscan
+```
+module load apps/jdk/15.0.2
+module load apps/python/3.8.5
+
+#The edited predicted proteins fasta just had to do with removing the * in the file.  Interproscan doesn't read * #
+
+./interproscan.sh -i ~/Cruber/CLP2635/Annotation/GeMoMa/misc_out/predicted_proteins_edited.fasta -b output_GEMOMA/ -cpu 48
+```
+BLAST
+```
+conda activate blast
+
+#start by making blastdb and specify protein
+makeblastdb -in combined_uniprot.fasta -out Uniprot_combined -dbtype prot
+
+#default out format is 6, which we want it to be for our next step. Also, we are using the protein FASTA output from the annotation of GeMoMa.  Some will add * as stop codons, but blastp doesn't like that, so be sure to edit your protein FASTA file to elminate the *
+
+blastp -query ~/Cruber/CLP2635/Annotation/GeMoMa/misc_out/predicted_proteins_edited.fasta -db Uniprot_combined -max_target_seqs 2 -max_hsps 1 -evalue 1e-6 -outfmt 6 -out Cruber.outfmt6.blastp -num_threads 40
+conda deactivate
+```
+Add BLAST and Interproscan outputs to annotation using [AGAT](https://github.com/NBISweden/AGAT)
 
 ```
+##Add BLAST and Interproscan output using agat
+
+Annotation=~/Cruber/CLP2635/Annotation/GeMoMa/misc_out/Cruber_annotation_GeMoMa.gff
+Inter=~/Cruber/CLP2635/Annotation/interproscan/interproscan-5.52-86.0/output_GEMOMA/predicted_proteins_edited.fasta.tsv
+blast=~/Cruber/CLP2635/Annotation/blast/UNIPROT/Cruber.outfmt6.blastp
+blastdb=~/Cruber/CLP2635/Annotation/blast/UNIPROT/combined_uniprot.fasta
+
+conda activate agat
+
+agat_sp_manage_functional_annotation.pl -f $Annotation -i $Inter -b $blast -d $blastdb -o Functional
+
+# This combines the information from interproscan and blast into your annotation GFF to give functional information, including mRNA product info
+```
+
+
 
