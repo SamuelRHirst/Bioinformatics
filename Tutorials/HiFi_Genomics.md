@@ -174,7 +174,7 @@ conda deactivate
 # Annotation
 
 ## Repeat Masking
-This is needed for most annotators. Hard masking turns repeat elements into N. Soft masking turns repeat elements to lower case letters
+This is needed for most annotators. Hard masking turns repeat elements into N. Soft masking turns repeat elements to lower case letters.
 I used [Repeatmasker](https://www.repeatmasker.org/)
 ```
 #Repeatmasker has its own conda environment - also part of repeatmodeler
