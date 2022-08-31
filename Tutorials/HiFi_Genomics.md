@@ -112,25 +112,6 @@ asm="/shares_bgfs/margres_lab/Snakes/Genomes/Cruber/CLP2635/Assembly/RunPurge/pu
 busco -i $asm -l sauropsida_odb10 -c 16 -m genome -r --out busco_purge_sauro
 busco -i $asm -l vertebrata_odb10 -c 16 -m genome -r --out busco_purge_vert
 ```
-Results: 
-
-Sauropsida
- C:93.0%[S:91.8%,D:1.2%],F:1.2%,M:5.8%,n:7480    
- 6952 Complete BUSCOs (C)    
- 6864 Complete and single-copy BUSCOs (S)    
- 88 Complete and duplicated BUSCOs (D)    
- 90 Fragmented BUSCOs (F)    
- 438 Missing BUSCOs (M)    
- 7480 Total BUSCO groups searched
-
-Vertebrata
- C:96.5%[S:95.5%,D:1.0%],F:1.1%,M:2.4%,n:3354    
- 235 Complete BUSCOs (C)    
- 3203 Complete and single-copy BUSCOs (S)    
- 32 Complete and duplicated BUSCOs (D)    
- 36 Fragmented BUSCOs (F)    
- 83 Missing BUSCOs (M)    
- 3354 Total BUSCO groups searched
  
  ## Additional Stats
  This is based on the [Proposed standards and metrics for defining genome assembly quality](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8081667/) from Rhie et al. 2021. Nature
