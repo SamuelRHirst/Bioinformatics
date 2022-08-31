@@ -1,7 +1,5 @@
-BIOINFORMATICS
-
-Samuel R Hirst
-
-This repository contains bioinformatic adivce, pipelines, or personally-developed scripts. 
+# Bioinformatics
+## Samuel R. Hirst
+This repository contains bioinformatic pipelines, scripts, and functions 
 
 
