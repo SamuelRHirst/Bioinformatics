@@ -49,6 +49,7 @@ conda deactivate
 #Get purged primary and haplotig sequences from draft assembly
 /home/h/hirsts/purge_dups/bin/get_seqs -e dups.bed $ASM
 ```
+Final file name will be purged.fa.  I eventually change this to Cruber_CLP2635_v2.purge_dups.asm.fasta
 # General Assembly Stats
 I used [PyPi](https://pypi.org/project/assembly-stats/)
 
