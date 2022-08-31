@@ -11,7 +11,7 @@ We can use [NanoPlot](https://github.com/wdecoster/NanoPlot) to check out some g
 NanoPlot -t 23 -o NanoPlot_res --fasta demultiplex.bc1012_BAK8A_OA--bc1012_BAK8A_OA.hifi_reads.fasta  demultiplex.bc1012_BAK8A_OA--bc1012_BAK8A_OA.hifi_reads.fasta
 ```
 # Assembly
-After testing other methodologies, I chose to use [hifiasm](https://hifiasm.readthedocs.io/en/latest/index.html) as our primary assembler as it was both the fastest and produced the best assembly.
+After testing other methodologies, I chose to use [hifiasm](https://hifiasm.readthedocs.io/en/latest/index.html) as the primary assembler as it was both the fastest and produced the best assembly.
 -t is number of CPUs, -o specifies prefix of output file. hifiasm outputs the primary assembly in `gfa` format, we can convert this to fasta format using `awk`
 ```
 hifiasm -o Cruber_CLP2635_v2.asm -t23 ~/Run1/demultiplex.bc1012_BAK8A_OA--bc1012_BAK8A_OA.hifi_reads.fasta ~/Run2/demultiplex.bc1012_BAK8A_OA--bc1012_BAK8A_OA.hifi_reads.fasta
