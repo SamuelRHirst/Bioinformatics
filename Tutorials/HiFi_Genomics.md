@@ -17,7 +17,7 @@ After testing other methodologies, I chose to use [hifiasm](https://hifiasm.read
 hifiasm -o Cruber_CLP2635_v2.asm -t23 ~/Run1/demultiplex.bc1012_BAK8A_OA--bc1012_BAK8A_OA.hifi_reads.fasta ~/Run2/demultiplex.bc1012_BAK8A_OA--bc1012_BAK8A_OA.hifi_reads.fasta
 awk '$1 ~/S/ {print ">"$2"\n"$3}' Cruber_CLP2635_v2.asm.p_ctg.gfa > Cruber_CLP2635_v2.asm.fasta
 ```
-# OPTIONAL
+## OPTIONAL: Additional Purge_dups
 You can increase genome assembly quality by running Purge_dups post assembly.  HiFiasm already does Purge_dups, but it apparently is not as quality as running it independently
 
 ```
