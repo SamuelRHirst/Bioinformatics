@@ -172,9 +172,9 @@ gt seqstat -contigs -genome $SIZE $ASM > ${ASM}_assembly.stats
 conda deactivate
 ```
 # Annotation
-
+If you have reference genomes of closely-related taxa, I highly reccommend using [GeMoMa](http://www.jstacs.de/index.php/GeMoMa). Otherwise, you may want to try other annotators such as MAKER, BRAKER2, or Funannotate
 ## Repeat Masking
-This is needed for most annotators. Hard masking turns repeat elements into N. Soft masking turns repeat elements to lower case letters.
+This is needed for most annotators (not GeMoMa). Hard masking turns repeat elements into N. Soft masking turns repeat elements to lower case letters.
 I used [Repeatmasker](https://www.repeatmasker.org/)
 ```
 #Repeatmasker has its own conda environment - also part of repeatmodeler
