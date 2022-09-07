@@ -202,7 +202,7 @@ ctfna=~/Reference/Ctigris/GCF_016545835.1_ASM1654583v1_genomic.fna
 tegff=~/Reference/Telegans/GCF_009769535.1_rThaEle1.pri_genomic_edited.gff
 tefna=~/Reference/Telegans/GCF_009769535.1_rThaEle1.pri_genomic.fna
 
-genome=~/Cruber/CLP2635/Annotation/BRAKER/Cruber_CLP2635_v2.purge_dups.asm.masked.fasta
+genome=~/Cruber/CLP2635/Assembly/RunPurge/Cruber_CLP2635_v2.purge_dups.asm.fasta
 
 # -Xmx is max memory and is needed for many java programs. 
 # All references were obtained from NCBI. RNA seq data from BAM files is also incoorperated with r=mapped because they are BAM files
