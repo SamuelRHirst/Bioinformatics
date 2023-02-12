@@ -3,7 +3,7 @@
 
 ***
 
-# Quality check and trimming
+Quality check and trimming
 We can use [TrimGalore](https://github.com/FelixKrueger/TrimGalore) to produce some QC files and trim the raw files
 ```
 #Trim Galore has its own conda envrionment 
