@@ -174,19 +174,36 @@ conda deactivate
 # Annotation
 If you have reference genomes of closely-related taxa, I highly reccommend using [GeMoMa](http://www.jstacs.de/index.php/GeMoMa). Otherwise, you may want to try other annotators such as MAKER, BRAKER2, or Funannotate
 ## Repeat Masking
-This is needed for most annotators (not GeMoMa). Hard masking turns repeat elements into N. Soft masking turns repeat elements to lower case letters.
-I used [Repeatmasker](https://www.repeatmasker.org/)
+This is needed for most annotators. Hard masking turns repeat elements into N. Soft masking turns repeat elements to lower case letters.
+I used [Repeatmodeler](https://www.repeatmasker.org/)
 ```
-#Repeatmasker has its own conda environment - also part of repeatmodeler
+#Repeatmodeler has its own conda environment - also part of repeatmodeler
 #xsmall will enable softmasking 
 
-conda activate repeatmasker
+#Start with RepeatModeler, which will create a repeat database of your assembly
 
-RepeatMasker -xsmall -species squamata /shares_bgfs/margres_lab/Snakes/Genomes/Cruber/CLP2635/Assembly/RunPurge/Cruber_CLP2635_v2.purge_dups.asm.fasta -dir
+###-UPDATE YOUR INPUTS
+INPUT=/path/to/your/assembly/.fasta
+DB=cruber
+
+###-SETUP DETECTION OF REPEATS
+#echo "Build database ..."
+BuildDatabase -name $DB $INPUT
+
+echo "Run RepeatModeler ..."
+RepeatModeler -pa 50 -database $DB > out.log
+
+ln -s RM_*/consensi.fa.classified ./
+
+#RepeatMasker will now actually modify your FASTA file for repeats. Annotators prefer different types of masking - hard or soft. GEMOMA prefers soft
+
+echo "Run RepeatMasker ..."
+RepeatMasker -pa 50 -xsmall -gff -lib consensi.fa.classified -dir MaskerOutput_RagTag $INPUT
+
 ```
 ## Gene Annotation
 I used [GeMoMa](http://www.jstacs.de/index.php/GeMoMa) which was reccommended to me by a geneticist with the Smithsonian Data Science Lab (Dr. Paul Frandsen)
-It relies heavily on references, so having closely related taxa with good reference genomes really helps
+It relies heavily on references, so having closely related taxa with good reference genomes is necesarry
 It can also use Transcriptomes as reference (Other tutorial available for Transcriptome data processing)
 ```
 #GEMOMA has its own conda envrionment#
