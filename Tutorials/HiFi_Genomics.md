@@ -184,7 +184,7 @@ I used [Repeatmodeler](https://www.repeatmasker.org/)
 
 ###-UPDATE YOUR INPUTS
 INPUT=/path/to/your/assembly/.fasta
-DB=cruber
+DB=DB_NAME
 
 ###-SETUP DETECTION OF REPEATS
 #echo "Build database ..."
@@ -198,7 +198,7 @@ ln -s RM_*/consensi.fa.classified ./
 #RepeatMasker will now actually modify your FASTA file for repeats. Annotators prefer different types of masking - hard or soft. GEMOMA prefers soft
 
 echo "Run RepeatMasker ..."
-RepeatMasker -pa 50 -xsmall -gff -lib consensi.fa.classified -dir MaskerOutput_RagTag $INPUT
+RepeatMasker -pa 50 -xsmall -gff -lib consensi.fa.classified -dir MaskerOutput $INPUT
 
 ```
 ## Gene Annotation
