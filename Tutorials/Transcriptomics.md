@@ -54,4 +54,38 @@ samtools view -Sb hisat2_blood.sam > hisat2_blood.bam
 #Sort bam file
 samtools sort -n hisat2_blood.bam -o hisat2_blood_sorted.bam
 ```
+# Mapping to estimate expression
+This also uses hisat2, but the process is a bit different
+You will need the reference genome assembly and annotation IN GTF
 
+```
+#Build index first
+#Building genome index with annotation - First generate ss and exon files from gtf
+#############
+
+hisat2_extract_splice_sites.py $ANNO > Cruber_genome.ss
+
+hisat2_extract_exons.py $ANNO > Cruber_Genome.exon
+
+#Now generate annotated index
+
+hisat2-build -p 50 --ss Cruber_genome.ss --exon Cruber_Genome.exon -f $GENOME Cruber_genome_Anno
+
+#Now we can run hisat2:
+hisat2 -p 50 -k 10 --dta -x Cruber_genome_Anno -1 $CLP2635VGF -2 $CLP2635VGR -S /path_to_output/CLP2635_VenomGland.sam
+
+#convert to Sam and Index
+
+module load apps/samtools/1.3.1
+
+samtools sort -@ 50 -o /Path_to_Output/Cruber_CLP2635_VG.bam /Path_to_Input/SAM/Cruber_CLP2635_VG.sam
+samtools index /shares_bgfs/margres_lab/Snakes/Transcriptomes/Cruber/Analyses/Hisat2/BAM/Cruber_CLP2635_VG.bam
+```
+#Estimating expression
+This is done using Stringtie
+
+```
+stringtie -p 50 -G $ANNO -e -o /Path_to_output/CLP2635_VenomGland.gtf -B -A /Path_to_output/CLP2635_VenomGland_abund.tab /Path_to/BAM/CLP2635_VenomGland.bam
+
+```
+The abund.tab file is most relevant. Final column shows transcript per million (TPM) for each annotated gene. 
