@@ -81,7 +81,7 @@ module load apps/samtools/1.3.1
 samtools sort -@ 50 -o /Path_to_Output/Cruber_CLP2635_VG.bam /Path_to_Input/SAM/Cruber_CLP2635_VG.sam
 samtools index /shares_bgfs/margres_lab/Snakes/Transcriptomes/Cruber/Analyses/Hisat2/BAM/Cruber_CLP2635_VG.bam
 ```
-#Estimating expression
+# Estimating expression
 This is done using Stringtie
 
 ```
