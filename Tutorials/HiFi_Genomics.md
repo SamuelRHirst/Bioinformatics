@@ -210,15 +210,20 @@ It can also use Transcriptomes as reference (Other tutorial available for Transc
 #References can be obtained from GenBank
 
 #References
+#Anolis Carolinensis
 acgff=~/Reference/Acarol/GCF_000090745.1_AnoCar2.0_genomic_edited.gff
 acfna=~/Reference/Acarol/GCF_000090745.1_AnoCar2.0_genomic.fna
+#Crotalus adamanteus
 cagff=~/Reference/Cadam/MASTER_Cadam_genes_cds_mRNA_30Jun21_edited.gff3
 cafna=~/Reference/Cadam/Cadamanteus_3dDNAHiC_1.2.fasta
+#Crotalus tigris
 ctgff=~/Reference/Ctigris/GCF_016545835.1_ASM1654583v1_genomic_edited.gff
 ctfna=~/Reference/Ctigris/GCF_016545835.1_ASM1654583v1_genomic.fna
+#Thamnophis elegans
 tegff=~/Reference/Telegans/GCF_009769535.1_rThaEle1.pri_genomic_edited.gff
 tefna=~/Reference/Telegans/GCF_009769535.1_rThaEle1.pri_genomic.fna
 
+#Reference Genome
 genome=~/Cruber/CLP2635/Assembly/RunPurge/Cruber_CLP2635_v2.purge_dups.asm.fasta
 
 # -Xmx is max memory and is needed for many java programs. 
