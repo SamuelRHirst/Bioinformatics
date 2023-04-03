@@ -229,8 +229,9 @@ genome=~/Cruber/CLP2635/Assembly/RunPurge/Cruber_CLP2635_v2.purge_dups.asm.fasta
 # -Xmx is max memory and is needed for many java programs. 
 # All references were obtained from NCBI. RNA seq data from BAM files is also incoorperated with r=mapped because they are BAM files
 
+#I reccommend the following flags. For o=true, you will have an reference output for each reference, o=false will be a single output
 conda activate gemoma
-GeMoMa GeMoMaPipeline threads=50 -Xmx250G outdir=final_annot GeMoMa.Score=ReAlign AnnotationFinalizer.r=NO o=true t=$genome s=own i=acarol a=$acgff g=$acfna s=own i=cadam a=$cagff g=$cafna s=own i=ctigris a=$ctgff g=$ctfna s=own i=telegans a=$tegff g=$tefna r=MAPPED ERE.m=$blood ERE.m=$heart ERE.m=$gonad ERE.m=$kideny ERE.m=$liver ERE.m=$VG
+GeMoMa GeMoMaPipeline threads=50 -Xmx250G outdir=final_annot GeMoMa.Score=ReAlign AnnotationFinalizer.r=NO o=false t=$genome s=own i=acarol a=$acgff g=$acfna s=own i=cadam a=$cagff g=$cafna s=own i=ctigris a=$ctgff g=$ctfna s=own i=telegans a=$tegff g=$tefna r=MAPPED ERE.m=$blood ERE.m=$heart ERE.m=$gonad ERE.m=$kideny ERE.m=$liver ERE.m=$VG
 ```
 Next, we can add more useful annotations using [Interproscan](https://www.ebi.ac.uk/interpro/search/sequence/) and [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download)
 
