@@ -235,6 +235,8 @@ GeMoMa GeMoMaPipeline threads=50 -Xmx250G outdir=final_annot GeMoMa.Score=ReAlig
 ```
 Next, we can add more useful annotations using [Interproscan](https://www.ebi.ac.uk/interpro/search/sequence/) and [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download)
 
+Note on April 3 2023, I tried rerunning this part, but Interproscan was giving me issues so I just used BLAST. That is likely sufficient for our goal here. 
+
 You first need to obtain a Uniprot protein database of reference organisms for Blast. I chose Acarol Cadam Ctigris Ohannah Telegans and combined their uniprot files into a single FASTA file combined_uniprot.fasta
 
 Interproscan
