@@ -29,7 +29,7 @@ RepeatMasker -pa 50 -xsmall -gff -lib consensi.fa.classified -dir MaskerOutput $
 
 ```
 ## Gene Annotation
-I used [GeMoMa](http://www.jstacs.de/index.php/GeMoMa) which was reccommended to me by a geneticist with the Smithsonian Data Science Lab (Dr. Paul Frandsen)
+I used [GeMoMa](http://www.jstacs.de/index.php/GeMoMa)
 It relies heavily on references, so having closely related taxa with good reference genomes is necesarry
 It can also use Transcriptomes as reference (Other tutorial available for Transcriptome data processing)
 ```
